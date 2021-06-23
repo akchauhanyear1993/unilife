@@ -5,7 +5,7 @@ var userSchema = new Schema({
   id: {
     type: Number,
     unique: true,
-    required: false,
+    required: true,
     
   },
   phone: {
@@ -66,12 +66,12 @@ var userSchema = new Schema({
     },
     password: {
         type: String,
-        required: false
+        required: true
        
     },
     decoded_password: {
         type: String,
-        required: false
+        required: true
        
     },
     reset_password: {
@@ -134,12 +134,12 @@ var userSchema = new Schema({
        
     },
     created_at: {
-        type: Date,
+        type: String,
         required: false
        
     },
     updated_at: {
-        type: Date,
+        type: String,
         required: false
        
     },

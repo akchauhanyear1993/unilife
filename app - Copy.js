@@ -16,12 +16,11 @@ const port = process.env.port || 5000
 var app = express();
 
 mongoose.Promise = global.Promise;
-var promise = mongoose.connect('mongodb://localhost:27017/dubaistudent', {
+var promise = mongoose.connect('mongodb+srv://dubai_students_93:dubai_students_93@unilife.jxohc.mongodb.net/dubai_students_93?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 promise.then(function(db) {
-  
     console.log("Connected to database!!!");
 }, function(err){
     console.log("Error in connecting database " + err);
@@ -106,29 +105,20 @@ const otp = new Otp(otpData);
 
 
 //********** Otp Verification *****************//
-app.post("/otp_verify", (req, res) => {
+
+app.post('/otp_verify',(req,res)=>{
+  
   let useremail = req.body.email;
   let verifyotp = req.body.otp;
-  console.log(useremail, verifyotp);
-  Otp.find({ email: useremail })
-    .then((data) => {
-      if (data[0].otp == verifyotp) {
-        res.send({
-          status: true,
-          message: "OTP has verified successfully",
-          data: [],
-        });
-      } else {
-        res.send({
-          status: false,
-          message: "Incorrect OTP",
-          data: [],
-        });
-      }
-    })
-    .catch((e) => {
-      res.send(e);
-    });
+
+  const otp = new Otp(req.body);
+  
+  let data = Otp.find().then(()=>{}).catch((e)=>{
+    res.send(e);
+  });
+
+  console.log(data);
+  
 });
 
 
