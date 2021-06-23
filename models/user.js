@@ -2,25 +2,21 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-  id: {
-    type: Number,
-    unique: true,
-    required: true,
-    
-  },
+  
   phone: {
     type: String,
-    required: false
+    required: false,
+
   },
   user_type: {
-      type: String,
+      type: Number,
       required: true,
       default:0
   },
   is_online: {
     type: String,
     required: true,
-    default: "online"
+    default: "offline"
   },
   username: {
     type: String,
@@ -34,7 +30,8 @@ var userSchema = new Schema({
     },
     profile_image: {
         type: String,
-        required: false
+        required: false,
+        default : ""
         
     },
     profile_status: {
@@ -45,17 +42,18 @@ var userSchema = new Schema({
 
     university_school_id: {
         type: Number,
-        required: false
+        required: true
        
     },
     university_school_email: {
         type: String,
-        required: false
+        required: true
        
     },
     email_domain: {
         type: String,
-        required: false
+        required: false,
+        default : ""
        
     },
     status: {
@@ -76,23 +74,26 @@ var userSchema = new Schema({
     },
     reset_password: {
         type: String,
-        required: false
+        required: false,
+        default: ""
        
     },
     remember_token: {
         type: String,
-        required: false
+        required: false,
+        default: ""
        
     },
     otp: {
         type: String,
-        required: false
+        required: false,
+        default :"yes"
        
     },
     otp_verify: {
         type: String,
         required: true,
-        default: "no"
+        default: "yes"
        
     },
 
@@ -150,7 +151,8 @@ var userSchema = new Schema({
     },
     version: {
         type: String,
-        required: false
+        required: false,
+        default : ""
        
     }
 
