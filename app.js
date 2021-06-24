@@ -215,8 +215,8 @@ app.post('/signup-user',(req,res)=>{
         res.send({ status : true, message: 'Otp has been sent to email', data: otpData});
       }).catch((error) => {
         //When there are errors We handle them here
-        console.log(err);
-        res.send(400, err);
+        console.log(error);
+        res.send(400, error);
 
     });
 });
