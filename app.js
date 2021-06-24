@@ -225,6 +225,40 @@ app.post('/signup-user',(req,res)=>{
     });
 });
 
+
+
+app.post('/login',(req,res)=>{
+
+  const useremail = req.body.username;
+  const userpassword = req.body.password;
+
+  User.find({ university_school_email: useremail, password : userpassword })
+    .then((data) => {
+      let userdata = data;
+      if(userdata.length > 0) {
+
+        res.send({
+          status: true,
+          message: "Login successfully",
+          data: userdata,
+        });
+      } else {
+        res.send({
+          status: false,
+          message: "Login failed",
+          data: [],
+        });
+      }
+  
+    })
+    .catch((e) => {
+      res.send(e);
+    });
+
+  
+  
+});
+
 //*********** Programme list  ends *************************//
 
 
