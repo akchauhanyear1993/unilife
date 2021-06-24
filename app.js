@@ -178,34 +178,6 @@ app.get('/programme-list',(req,res)=>{
   
 });
 
-
-// coutry list api
-
-app.get('/country-list',(req,res)=>{
-	Country.find()
-    .then((data) => {
-      let userdata = data;
-      if(userdata.length > 0) {
-
-        res.send({
-          status: true,
-          message: "Country list",
-          data: userdata,
-        });
-      } else {
-        res.send({
-          status: false,
-          message: "data not found",
-          data: [],
-        });
-      }
-  
-    })
-    .catch((e) => {
-      res.send(e);
-    }); 
-});
-
 //*********** Programme list  ends *************************//
 
 
