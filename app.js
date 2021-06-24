@@ -5,7 +5,7 @@ var Item = require('./models/item');
 var nodemailer = require('nodemailer');
 const University = require('./models/university');
 const Degree = require('./models/degree');
-const Country = require('./models/dountry');
+const Country = require('./models/country');
 const Programme = require('./models/programme');
 const Years = require('./models/Years');
 
