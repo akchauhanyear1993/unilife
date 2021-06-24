@@ -229,10 +229,10 @@ app.post('/signup-user',(req,res)=>{
 
 app.post('/login',(req,res)=>{
 
-  const useremail = req.body.username;
-  const userpassword = req.body.password;
+  const username = req.body.username;
+  const passowrd = req.body.password;
 
-  User.find({ university_school_email: useremail, password : userpassword })
+  User.find({ email: username, password : passowrd })
     .then((data) => {
       let userdata = data;
       if(userdata.length > 0) {
