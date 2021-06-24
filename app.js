@@ -1,7 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var Item = require('./models/item');
-//var User = require('./models/user');
+var User = require('./models/user');
 var nodemailer = require('nodemailer');
 const University = require('./models/university');
 const Degree = require('./models/degree');
@@ -206,6 +206,17 @@ app.get('/country-list',(req,res)=>{
     });
   
   
+});
+
+
+app.post('/signup-user',(req,res)=>{
+	    const otp = new User(req.body);
+      otp.save().then(()=>{
+        res.send({ status : true, message: 'Otp has been sent to email', data: otpData});
+       
+      }).catch((e)=>{
+        res.send({ status : false, message: 'Otp has failed to send', data: []});
+      });
 });
 
 //*********** Programme list  ends *************************//
