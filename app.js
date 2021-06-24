@@ -4,9 +4,9 @@ var Item = require('./models/item');
 //var User = require('./models/user');
 var nodemailer = require('nodemailer');
 const University = require('./models/university');
-const Degree = require('./models/Degree');
-const Country = require('./models/Country');
-const Programme = require('./models/Programme');
+const Degree = require('./models/degree');
+const Country = require('./models/dountry');
+const Programme = require('./models/programme');
 const Years = require('./models/Years');
 
 
