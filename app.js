@@ -240,8 +240,6 @@ app.post('/login',(req,res)=>{
       data: err,
     });
 });
-
-  
   
 });
 
