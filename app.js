@@ -211,13 +211,17 @@ app.get('/country-list',(req,res)=>{
 
 app.post('/signup-user',(req,res)=>{
 	    const otp = new User(req.body);
-      otp.save().then(()=>{
-        res.send({ status : true, message: 'Otp has been sent to email', data: otpData});
-      }).catch((error) => {
-        //When there are errors We handle them here
-        console.log(error);
-        res.send(400, error);
-
+      otp.save(function(err, user) {
+        if (err) return res.send({
+          status: true,
+          message: "Otp sent to mobile!",
+          data: user,
+        });
+        res.send({
+          status: false,
+          message: "Something went wrong!",
+          data: err,
+        });
     });
 });
 
