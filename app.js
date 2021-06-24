@@ -230,9 +230,9 @@ app.post('/signup-user',(req,res)=>{
 app.post('/login',(req,res)=>{
 
   const email = req.body.email;
-  const passowrd = req.body.password;
+  const password = req.body.password;
 
-  User.find({ email: email, password : passowrd })
+  User.find({ email: email, password : password })
     .then((data) => {
       let userdata = data;
       if(userdata.length > 0) {
