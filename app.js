@@ -228,32 +228,18 @@ app.post('/signup-user',(req,res)=>{
 
 
 app.post('/login',(req,res)=>{
-
-  const email = req.body.email;
-  const password = req.body.password;
-
-  User.find({ email: email, password : password })
-    .then((data) => {
-      let userdata = data;
-      if(userdata.length > 0) {
-
-        res.send({
-          status: true,
-          message: "Login successfully",
-          data: userdata,
-        });
-      } else {
-        res.send({
-          status: false,
-          message: "Login failed",
-          data: [],
-        });
-      }
-  
-    })
-    .catch((e) => {
-      res.send(e);
+  User.find({ email: req.body.email, password : req.body.password},function(err, user) {
+    if (err == null) return res.send({
+      status: true,
+      message: "Otp sent to mobile!",
+      data: user,
     });
+    res.send({
+      status: false,
+      message: "Something went wrong!",
+      data: err,
+    });
+});
 
   
   
