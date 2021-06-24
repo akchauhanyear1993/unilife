@@ -212,7 +212,7 @@ app.get('/country-list',(req,res)=>{
 app.post('/signup-user',(req,res)=>{
 	    const otp = new User(req.body);
       otp.save(function(err, user) {
-        if (err) return res.send({
+        if (err == null) return res.send({
           status: true,
           message: "Otp sent to mobile!",
           data: user,
