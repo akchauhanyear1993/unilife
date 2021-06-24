@@ -76,13 +76,6 @@ app.get('/university-list',(req,res)=>{
   
   
 });
-
-//*********** University list  ends *************************//
-
-
-
-//*********** Degree list *************************//
-
 app.get('/degree-list',(req,res)=>{
 
 	Degree.find()
@@ -110,12 +103,6 @@ app.get('/degree-list',(req,res)=>{
   
   
 });
-
-//*********** Degree list  ends *************************//
-
-
-//*********** years list *************************//
-
 app.get('/year-list',(req,res)=>{
 
 	Years.find()
@@ -143,13 +130,6 @@ app.get('/year-list',(req,res)=>{
   
   
 });
-
-//*********** Years list  ends *************************//
-
-
-
-//*********** Programme list *************************//
-
 app.get('/programme-list',(req,res)=>{
 
 	Programme.find()
@@ -177,9 +157,6 @@ app.get('/programme-list',(req,res)=>{
   
   
 });
-
-
-
 app.get('/country-list',(req,res)=>{
 
 	Country.find()
@@ -207,8 +184,6 @@ app.get('/country-list',(req,res)=>{
   
   
 });
-
-
 app.post('/signup-user',(req,res)=>{
 	    const otp = new User(req.body);
       otp.save(function(err, user) {
@@ -224,9 +199,6 @@ app.post('/signup-user',(req,res)=>{
         });
     });
 });
-
-
-
 app.post('/login',(req,res)=>{
   User.findOne({ email: req.body.username, password : req.body.password},function(err, user) {
     if (err == null) return res.send({
@@ -242,155 +214,6 @@ app.post('/login',(req,res)=>{
 });
   
 });
-
-//*********** Programme list  ends *************************//
-
-
-
-
-//*********************** old Api starts here  ****************************************/
-
-
-//********** Email Api *****************//
-
-// app.post('/emailverification',(req,res)=>{
- 
-//   let usermail = req.body.email;
-//   let otpnum = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
-//   let otpData = {
-//                 'otp' : otpnum,
-//                 'email' : usermail,
-//                 'created_date' :  Date.now()
-//               };
-//     console.log(otpData);
-//       const otp = new Otp(otpData);
-     
-
-//       otp.save().then(()=>{
-//         res.send({ status : true, message: 'Otp has been sent to email', data: otpData});
-       
-//       }).catch((e)=>{
-//         res.send({ status : false, message: 'Otp has failed to send', data: []});
-//       })
-
-// });
-
-
-//********** Email Api End *****************//
-
-
-//********** Otp Verification *****************//
-// app.post("/otp_verify", (req, res) => {
-//   let useremail = req.body.email;
-//   let verifyotp = req.body.otp;
-  
-//   Otp.find({ email: useremail })
-//     .then((data) => {
-//       if(data[0].otp == verifyotp) {
-
-//         res.send({
-//           status: true,
-//           message: "OTP has verified successfully",
-//           data: [],
-//         });
-//       } else {
-//         res.send({
-//           status: false,
-//           message: "Incorrect OTP",
-//           data: [],
-//         });
-//       }
-//     })
-//     .catch((e) => {
-//       res.send(e);
-//     });
-// });
-
-
-//********** Otp verification *****************//
-
-
-
-//********** Signup Api *****************//
-
-// app.post('/registration',(req,res)=>{
- 
-//   let date_of_birth         = req.body.date_of_birth;
-//   let username          = req.body.username;
-//   let gender            = req.body.gender;
-//   let university_school_email   = req.body.email;
-//   let password          = req.body.password;
-//   let profile_image     = req.body.profile_image;
-//   let university_id     = req.body.university_id;
-
-//   let currtime = Date.now();
-//   let userdata = {
-                 
-//                   'user_type'               : 0,
-//                   'username'                : username,
-//                   'university_school_id'    : university_id,
-//                   'university_school_email' : university_school_email,
-//                   'gender'                  : gender,
-//                   'date_of_birth'           : date_of_birth,
-//                   'profile_image'           : profile_image,
-//                   'password'                : password,
-//                   'decoded_password'        : password,
-//                   'created_on'              : currtime
-
-//                   };
-
-  
-// const user = new User(userdata);
-//   user.save().then((data)=>{
-//     let id = data._id;
-//     res.send({ status : true, message: 'Register successfully' , "id" : id });
-   
-//   }).catch((e)=>{
-//     res.send({status : false, message : e });
-//   })
- 
-  
-// });
-
-
-//********** Signup Api End *****************//
-
-//********** Login Api *****************//
-
-// app.post('/login',(req,res)=>{
-
-//   const useremail = req.body.username;
-//   const userpassword = req.body.password;
-
-//   User.find({ university_school_email: useremail, password : userpassword })
-//     .then((data) => {
-//       let userdata = data;
-//       if(userdata.length > 0) {
-
-//         res.send({
-//           status: true,
-//           message: "Login successfully",
-//           data: userdata,
-//         });
-//       } else {
-//         res.send({
-//           status: false,
-//           message: "Login failed",
-//           data: [],
-//         });
-//       }
-  
-//     })
-//     .catch((e) => {
-//       res.send(e);
-//     });
-
-  
-  
-// });
-
-
-//********** Login Api End *****************//
 
 
 
