@@ -85,7 +85,7 @@ app.get('/university-list',(req,res)=>{
 
 app.get('/degree-list',(req,res)=>{
 
-	University.find()
+	Degree.find()
     .then((data) => {
       let userdata = data;
       if(userdata.length > 0) {
