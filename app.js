@@ -228,7 +228,7 @@ app.post('/signup-user',(req,res)=>{
 
 
 app.post('/login',(req,res)=>{
-  User.find({ email: req.body.email, password : req.body.password},function(err, user) {
+  User.findOne({ email: req.body.email, password : req.body.password},function(err, user) {
     if (err == null) return res.send({
       status: true,
       message: "Otp sent to mobile!",
