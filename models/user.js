@@ -30,7 +30,8 @@ var userSchema = new Schema({
   },
   university_email: {
       type: String,
-      required: true
+      required: true,
+      unique: true,
   },
   referral_Code: {
     type: String,
@@ -40,12 +41,12 @@ var userSchema = new Schema({
   name: {
     type: String,
     required: false
-    
     },
   phone: {
         type: String,
         required: true,
-        default: "no"
+        default: "no",
+        unique: true
     },
   email: {
         type: String,
