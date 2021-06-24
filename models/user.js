@@ -51,7 +51,8 @@ var userSchema = new Schema({
   email: {
         type: String,
         required: false,
-        default : ""
+        default : "",
+        unique: true,
         
     },
   parent_email: {
