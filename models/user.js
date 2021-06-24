@@ -67,6 +67,11 @@ var userSchema = new Schema({
   created_on: {
         type: Number,
         required: true
+    },
+
+    password: {
+        type: Number,
+        required: true
     }
 
 }, { collection: 'user' });
