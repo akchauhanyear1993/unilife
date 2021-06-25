@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var Item = require('./models/item');
 var User = require('./models/user');
+var Otp = require('./models/otp');
 var nodemailer = require('nodemailer');
 const University = require('./models/university');
 const Degree = require('./models/degree');
