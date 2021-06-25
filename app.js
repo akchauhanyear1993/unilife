@@ -216,4 +216,73 @@ app.post('/login',(req,res)=>{
 });
 
 
+app.post('/emailverification',(req,res)=>{
+ 
+  let usermail = req.body.email;
+  let otpnum = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
+  let otpData = {
+                'otp' : otpnum,
+                'email' : usermail,
+                'created_date' :  Date.now()
+              };
+    console.log(otpData);
+      const otp = new Otp(otpData);
+      // var mailOptions = {
+      //   from: "codertanu@gmail.com",
+      //   to: "amreshkumar.com@gmail.com",
+      //   subject: "Email Verification",
+      //   text: "Your Email verification Otp is: "+otpnum,
+      // };
+    
+      // transporter.sendMail(mailOptions, function (error, info) {
+      //   if (error) {
+      //     console.log(error);
+      //   } else {
+      //     console.log("Email sent: " + info.response);
+      //   }
+      // });
+
+      otp.save().then(()=>{
+        res.send({ status : true, message: 'Otp has been sent to email', data: otpData});
+       
+      }).catch((e)=>{
+        res.send({ status : false, message: 'Otp has failed to send', data: []});
+      })
+
+});
+
+
+//**** Email Api End *******//
+
+
+//**** Otp Verification *******//
+app.post("/otp_verify", (req, res) => {
+  let useremail = req.body.email;
+  let verifyotp = req.body.otp;
+  
+  Otp.find({ email: useremail })
+    .then((data) => {
+      if(data[0].otp == verifyotp) {
+
+        res.send({
+          status: true,
+          message: "OTP has verified successfully",
+          data: [],
+        });
+      } else {
+        res.send({
+          status: false,
+          message: "Incorrect OTP",
+          data: [],
+        });
+      }
+    })
+    .catch((e) => {
+      res.send(e);
+    });
+});
+
+
+//**** Otp verification *******//
+
 
