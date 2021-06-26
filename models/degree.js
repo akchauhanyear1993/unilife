@@ -3,8 +3,7 @@ var Schema = mongoose.Schema;
 
 var degreeSchema = new Schema({
     
-   
-    university_name: {
+   university_name: {
       type: String,
       required: true
     }    

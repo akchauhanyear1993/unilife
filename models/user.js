@@ -13,6 +13,12 @@ var userSchema = new Schema({
     required: false,
 
   },
+  is_online : {
+    type: String,
+    required: false,
+    default : "online"
+
+  },
   degree: {
     type: String,
     required: false,
@@ -28,7 +34,13 @@ var userSchema = new Schema({
     required: false,
 
   },
-  university_email: {
+  otp_verify : {
+    type: String,
+    required: true,
+    unique: "yes"
+
+  },
+  university_school_email: {
       type: String,
       required: true,
       unique: true,
@@ -59,6 +71,17 @@ var userSchema = new Schema({
         type: String,
         required: true,
         default: "public"
+    },
+    profile_status : {
+      type: String,
+        required: false,
+        default: ""
+    },
+    university_school_id : {
+      type: Number,
+        required: false,
+        default: "0"
+
     },
 
   country: {
