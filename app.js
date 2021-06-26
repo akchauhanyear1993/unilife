@@ -310,9 +310,13 @@ app.post("/otp_verify", (req, res) => {
   let useremail = req.body.email;
   let verifyotp = req.body.otp;
   
-  Otp.find({ email: useremail })
+  Otp.find({ email: useremail, otp : verifyotp })
     .then((data) => {
       if(data[0].otp == verifyotp) {
+        var myquery = { otp : verifyotp };
+        var newvalues = { $set: {verify: "yes"} };
+        Otp.updateOne(myquery, newvalues, function(err, res) {});
+
 
         res.send({
           status: true,
