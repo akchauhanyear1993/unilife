@@ -3,30 +3,30 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
   
-  usertype: {
+  user_type: {
     type: String,
-    required: false,
+    required: true
 
   },
-  university_name: {
-    type: String,
-    required: false,
+  // university_name: {
+  //   type: String,
+  //   required: false,
 
-  },
+  // },
   is_online : {
     type: String,
-    required: false,
+    required: true,
     default : "online"
 
   },
   degree: {
     type: String,
-    required: false,
+    required: true
 
   },
   programme_name: {
     type: String,
-    required: false,
+    required: true
 
   },
   current_year: {
@@ -36,40 +36,97 @@ var userSchema = new Schema({
   },
   otp_verify : {
     type: String,
-    required: true,
-    unique: "yes"
+    required: false,
+    default: "no"
 
   },
+  designation : {
+    type: String,
+    required: false,
+    default: ""
+
+  },
+  organisation : {
+    type: String,
+    required: false,
+    default: ""
+
+  },
+  personal_mission : {
+    type: String,
+    required: false,
+    default: ""
+
+  },
+  personal_description : {
+    type: String,
+    required: false,
+    default: ""
+  },
+  profile_banner_image : {
+    type: String,
+    required: false,
+    default: ""
+
+  },
+  date_of_birth : {
+    type : String,
+    required : false,
+    default : ""
+  },
+  gender : {
+    type: String,
+    required: false,
+    default: ""
+
+  },
+  
   university_school_email: {
       type: String,
-      required: true,
-      unique: true,
+      required: false,
+      default: ""
+  },
+  email_domain : {
+    type: String,
+    required: false,
+    default: ""
+
+  },
+
+  email :{
+    type : String,
+    required : true
   },
   referral_Code: {
     type: String,
-    required: true,
-    default: "offline"
+    required: false,
+    default: ""
   },
+  refered_by: {
+    type: String,
+    required: false,
+    default: ""
+  },
+  interest : {
+    type: String,
+    required: false,
+    default: ""
+  },
+
   name: {
     type: String,
     required: false
     },
   phone: {
         type: String,
-        required: true,
-        default: "no",
-        unique: true
-    },
-  email: {
-        type: String,
         required: false,
-        default : "",
-        unique: true,
-        
+        default: "no",
+       
     },
+  
   parent_email: {
         type: String,
-        required: true,
+        required: false,
         default: "public"
     },
     profile_status : {
@@ -77,27 +134,94 @@ var userSchema = new Schema({
         required: false,
         default: ""
     },
-    university_school_id : {
-      type: Number,
-        required: false,
-        default: "0"
+    status : {
+      type: String,
+      required: false,
+      default: "active"
 
     },
+  university_school_id : {
+      type: String,
+      required: false,
+      default: ""
+
+  },
+
+  
+  username : {
+    type: String,
+    required : false,
+    default : ""
+
+  },
+  ielts : {
+    type : String,
+    required : false
+
+  },
+  complete_profile : {
+    type : String ,
+    required : false,
+    default : ""
+  },
+  profile_image : {
+    type : String ,
+    required : false,
+    default : ""
+  },
 
   country: {
         type: String,
-        required: true
+        required: false,
+        default : ""
        
     },
-  created_on: {
-        type: Number,
-        required: true
-    },
-
     password: {
         type: String,
-        required: true
+        required: false,
+        default : ""
+    },
+    decoded_password : {
+      type: String,
+        required: false,
+        default : ""
+    },
+    reset_password : {
+      type: String,
+      required: false,
+      default : ""
+
+    },
+    remember_token : {
+      type: String,
+      required: false,
+      default : ""
+
+    },
+
+    created_at : {
+      type: String,
+      required: false,
+      default: ""
+    }, 
+    updated_at : {
+      type: String,
+      required: false,
+      default: ""
+    },
+    source : {
+      type: String,
+      required: false,
+      default: ""
+  
+    },
+    version : {
+      type: Number,
+      required: false,
+      default: 2.0
+  
     }
+
 
 }, { collection: 'user' });
 
