@@ -31,13 +31,14 @@ var userSchema = new Schema({
   },
   current_year: {
     type: String,
-    required: false,
+    required: false
 
   },
   otp_verify : {
     type: String,
-    required: false,
-    default: "no"
+    required: false
+    
+    
 
   },
   designation : {
@@ -120,8 +121,8 @@ var userSchema = new Schema({
   phone: {
         type: String,
         required: false,
-        default: "no",
-       
+        default: ""
+        
     },
   
   parent_email: {
@@ -226,3 +227,4 @@ var userSchema = new Schema({
 }, { collection: 'user' });
 
 module.exports = mongoose.model('user', userSchema);
+

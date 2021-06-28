@@ -244,8 +244,9 @@ app.post('/signup-user',(req,res)=>{
     }
     else {
       usermail = email;
+    
     }
-
+    
     //********* send otp to email  ******************************/
       let otpnum = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
       let otpData = {
@@ -272,6 +273,8 @@ app.post('/signup-user',(req,res)=>{
                       'updated_at'      : dateTime
        };
        
+       console.log(userData);
+       console.log(otpData);
        const otp = new Otp(otpData);
        const user = new User(userData);
        otp.save().then(()=>{
@@ -293,12 +296,14 @@ app.post('/signup-user',(req,res)=>{
 
             
             user.save().then(() => {
-              //res.send({ status : true, message: 'Otp has been sent to email', data: otpData});
-            
+              res.send({ status : true, message: 'Otp has been sent to email', data: otpData});
+
             }).catch((e)=>{
+             
               res.send(e);
-            })
-            res.send({ status : true, message: 'Otp has been sent to email', data: otpData});
+             })
+
+           
 
         }).catch((e)=>{
          // res.send({ status : false, message: 'user has faied to signup ', data: []});
@@ -582,6 +587,7 @@ app.post("/get_all_profile_data", (req , res ) => {
 app.post("homepage_data", (req, res) => {
 
 });
+
 
 
 
