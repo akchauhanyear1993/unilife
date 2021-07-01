@@ -273,8 +273,7 @@ app.post('/signup-user',(req,res)=>{
                       'updated_at'      : dateTime
        };
        
-       console.log(userData);
-       console.log(otpData);
+      
        const otp = new Otp(otpData);
        const user = new User(userData);
        otp.save().then(()=>{
@@ -450,26 +449,35 @@ app.post("/otp_verify", (req, res) => {
   
   Otp.find({ email: useremail, otp : verifyotp })
     .then((data) => {
+      //console.log(data);
       if(data[0].otp == verifyotp) {
         var myquery = { otp : verifyotp };
         var newvalues = { $set: {verify: "yes"} };
         Otp.updateOne(myquery, newvalues, function(err, res) {});
-
         
-        res.send({
-          status: true,
-          message: "OTP has verified successfully",
-          data: [],
-        });
+        User.find({ email: useremail })
+        .then((userdata) => { 
+          let userdetails = userdata;
+          //console.log(userdetails[0]);
+
+          res.send({
+            status: true,
+            message: "OTP has verified successfully",
+            data: {data : userdetails[0]}
+          });
+
+        })
+      
       } else {
         res.send({
           status: false,
           message: "Incorrect OTP",
-          data: [],
+          data: {},
         });
       }
     })
     .catch((e) => {
+      
       res.send(e);
     });
 });
@@ -483,6 +491,7 @@ app.post("/get_uni_id_using_domain", (req, res) => {
   Domain.find({ domain: domain, status : "active"})
     .then((data) => {
       let domaindata = data;
+      
       if(domaindata.length > 0) {
 
         res.send({
@@ -525,7 +534,6 @@ app.post("/get-url", (req, res) => {
           
         };
         
-        console.log(mailOptions.text);
         transporter.sendMail(mailOptions, function (error, info) {
           if (error) {
             console.log(error);
@@ -587,7 +595,6 @@ app.post("/get_all_profile_data", (req , res ) => {
 app.post("homepage_data", (req, res) => {
 
 });
-
 
 
 

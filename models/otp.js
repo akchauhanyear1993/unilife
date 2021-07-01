@@ -13,12 +13,14 @@ var otpSchema = new Schema({
     },
     verify: {
       type: String,
-      required: true,
+      required: false,
       default: "no"
     },
     created_date: {
         type: String,
-        required: true
+        required: false,
+        default: ""
+
         
       }
     

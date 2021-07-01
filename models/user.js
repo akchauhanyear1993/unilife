@@ -36,7 +36,8 @@ var userSchema = new Schema({
   },
   otp_verify : {
     type: String,
-    required: false
+    required: false,
+    default: "no"
     
     
 
@@ -227,4 +228,3 @@ var userSchema = new Schema({
 }, { collection: 'user' });
 
 module.exports = mongoose.model('user', userSchema);
-
