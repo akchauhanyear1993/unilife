@@ -23,6 +23,8 @@ const University_schools = require('./models/university_schools');
 const  Otp              = require('./models/otp');
 const Domain            = require('./models/domain');
 
+const Admin_users       = require('./models/Admin_users');
+
 // event_link_user_list , friend_lists, posts, post_attachments
 
 var transporter = nodemailer.createTransport({
@@ -588,16 +590,86 @@ app.post("/get_all_profile_data", (req , res ) => {
     });
 
 
+});
 
+app.post("/homepage_data", (req, res) => {
 
 });
 
-app.post("homepage_data", (req, res) => {
+
+
+
+
+/******************************************* Admin panel api starts here *************************/
+
+
+app.post("/adminlogin", (req, res) => {
+  let adminid = req.body.username;
+  let password = req.body.password;
+
+  Admin_users.find({ email: adminid ,password : password })
+    .then((data) => {
+      let userdata = data;
+      if(userdata.length > 0) {
+
+        res.send({
+          status: true,
+          message: "Login successfully",
+          data: userdata,
+        });
+      } else {
+        res.send({
+          status: false,
+          message: "login failed",
+          data: [],
+        });
+      }
+       
+    })
+    .catch((e) => {
+      res.send(e);
+    });
+
+});
+
+app.get("/userlist", (req, res) => {
+  User.find({})
+    .then((data) => {
+      let userdata = data; // for user data 
+      if(userdata.length > 0) {
+
+        res.send({
+          status: true,
+          message: "userlist",
+          data: userdata,
+        });
+      } else {
+        res.send({
+          status: false,
+          message: "data not found",
+          data: [],
+        });
+      }
+ 
+    })
+    .catch((e) => {
+      res.send(e);
+    });
 
 });
 
 
+app.post("/tokenupdate", (req, res) => {
+  let user_id = req.body.id;
+  let token = req.body.token;
 
+    var myquery = { _id : user_id };
+    var newvalues = { $set: {token: token} };
+    Admin_users.updateOne(myquery, newvalues, function(err, res) {
+      
+  });
+
+});
 
 
 
