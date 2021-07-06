@@ -23,7 +23,7 @@ const University_schools = require('./models/university_schools');
 const  Otp              = require('./models/otp');
 const Domain            = require('./models/domain');
 
-const Admin_users       = require('./models/Admin_users');
+const Admin_users       = require('./models/admin_users');
 
 // event_link_user_list , friend_lists, posts, post_attachments
 
@@ -60,7 +60,11 @@ app.listen(port, function () {
 });
 app.use(express.json());
 
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 //*********************   unilife new Api Starts here ***********************//
 
