@@ -23,7 +23,7 @@ const University_schools = require('./models/university_schools');
 const  Otp              = require('./models/otp');
 const Domain            = require('./models/domain');
 
-const Admin_users       = require('./models/Admin_users');
+const Admin_users       = require('./models/admin_users');
 
 // event_link_user_list , friend_lists, posts, post_attachments
 
